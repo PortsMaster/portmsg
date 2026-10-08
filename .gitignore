@@ -1,0 +1,5 @@
+portmsg.aarch64
+portmsg.armhf
+portmsg.x86_64
+fonts/*.h
+test/device/portmsgtest/portmsg.*
