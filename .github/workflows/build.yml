@@ -54,14 +54,14 @@ jobs:
           apt update
           apt install -y --no-install-recommends build-essential xxd ca-certificates git ${{ matrix.arch.gcc }} libsdl2-dev:${{ matrix.arch.name }}
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Build ${{ matrix.arch.name }}
         run: |
           make ARCH=${{ matrix.arch.executable }} CC=${{ matrix.arch.cc }} STRIP=${{ matrix.arch.strip }}
 
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: portmsg_${{ matrix.arch.name }}
           path: |
@@ -75,12 +75,12 @@ jobs:
     runs-on: ubuntu-latest
     name: Package Artifacts
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0 # Needed for changelog generation
 
       - name: Download all artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           path: artifacts
 
@@ -104,7 +104,7 @@ jobs:
           zip -r ../portmsg-all.zip ./*
 
       - name: Upload Consolidated Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: portmsg-complete-bundle
           path: staging/*
