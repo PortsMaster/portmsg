@@ -68,6 +68,10 @@ apt-get install -y libsdl2-dev xxd
 make                # -> portmsg.aarch64 (ARCH=armhf / x86_64 to name other native builds)
 ```
 
+Cross builds set the compiler, for example `make ARCH=armhf CC=arm-linux-gnueabihf-gcc STRIP=arm-linux-gnueabihf-strip`.
+GitHub Actions builds aarch64, armhf and x86_64 in Debian Bullseye on every push and pull request.
+Running the workflow by hand also publishes a release with the three binaries.
+
 `make fonts` regenerates `fonts/PortmsgSans-*.ttf` from Lato with `tools/subset_font.py`, which
 needs `python3-fonttools`. The subset covers Basic Latin, Latin-1, Latin Extended-A, general
 punctuation, arrows, € and ™. Other characters render as `?`.
